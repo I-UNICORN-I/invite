@@ -48,6 +48,32 @@
       border-radius: 12px;
       display: none;
     }
+    .invitation a {
+  color: inherit;           /* Наслідує колір від батьківського елемента */
+  text-decoration: none;    /* Забирає підкреслення */
+  font-weight: inherit;     /* Наслідує жирність */
+}
+
+.invitation a:hover {
+  text-decoration: underline; /* Можна додати ефект при наведенні */
+}
+.ad-text {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.ad-text a {
+  color: red;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.ad-text a:hover {
+  text-decoration: underline;
+}
+
+
+
     .invitation img {
       width: 100%;
       border-radius: 12px 12px 0 0;
@@ -94,16 +120,19 @@
     <div class="subtitle">С У К А</div>
     <div class="name">Вельмишановний Лібунський Дмитро Анатолійович</div>
     <div class="details">
-      ПРИХОДЬТЕ В ГОСТІ<br>
-      тоді коли покличу<br>
-      19:00
-    </div>
-    <!-- Кнопка відкрити у браузері -->
-<div style="margin-top: 30px;">
-  <a href="" onclick="openInBrowser(event)" style="color: #f5e169; font-weight: bold; text-decoration: underline; font-size: 18px;">
-    Тут може бути ваша реклама
-  </a>
+  ПРИХОДЬТЕ В ПАБ 
+  <a href="https://maps.app.goo.gl/4PHV6eATNWHZ1wB36" target="_blank" rel="noopener noreferrer">Kegler</a><br> 
+  17.07.2025<br> 
+  19:30
 </div>
+
+    
+
+<div class="ad-text">
+  <a href="https://send.monobank.ua/jar/2vZ6PkNFVH" target="_blank">👉Тут могла бути ваша реклама👈</a>
+</div>
+
+
 
   </div>
 
