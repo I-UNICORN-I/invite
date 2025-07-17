@@ -132,29 +132,31 @@
     }
 
     .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255,255,255,0.7);
-      border: none;
-      font-size: 2rem;
-      cursor: pointer;
-      user-select: none;
-      padding: 0 10px;
-      z-index: 10;
-    }
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.7);
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  user-select: none;
+  padding: 0 8px;
+  z-index: 10;
+  line-height: 1; /* щоб не "тягнуло" кнопку */
+  height: auto; /* переконайся, що висота не фіксована */
+}
 
-    .arrow:hover {
-      background: rgba(255,255,255,0.9);
-    }
+.arrow:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
 
-    .arrow-prev {
-      left: 10px;
-    }
+.arrow-prev {
+  left: 10px;
+}
 
-    .arrow-next {
-      right: 10px;
-    }
+.arrow-next {
+  right: 10px;
+}
   </style>
 </head>
 <body>
