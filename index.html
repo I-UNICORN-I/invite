@@ -51,6 +51,7 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
       border-radius: 12px;
       display: none;
+      color: #000;
     }
 
     .invitation a {
@@ -76,11 +77,6 @@
 
     .ad-text a:hover {
       text-decoration: underline;
-    }
-
-    .invitation img {
-      width: 100%;
-      border-radius: 12px 12px 0 0;
     }
 
     .title {
@@ -112,51 +108,44 @@
       margin-top: 20px;
     }
 
-    .slider {
-      width: fit-content;
-      max-width: 100%;
-      margin: 0 auto;
+    /* Відео контейнер */
+    .video-container {
       position: relative;
-      overflow: hidden;
+      width: 100%;
+      max-width: 600px;
+      margin: 20px auto;
     }
 
-    .slide {
-      display: none;
+    #mainVideo {
       width: 100%;
       height: auto;
-      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
 
-    .slide.active {
-      display: block;
-    }
-
-    .arrow {
+    /* Кнопка Play поверх відео */
+   #playOverlay {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255,255,255,0.7);
-  border: none;
-  font-size: 2rem;
-  cursor: pointer;
-  user-select: none;
-  padding: 0 8px;
-  z-index: 10;
-  line-height: 1; /* щоб не "тягнуло" кнопку */
-  height: auto; /* переконайся, що висота не фіксована */
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  background: rgba(0,0,0,0.4); /* напівпрозоре затемнення */
+  border-radius: 12px;
+  transition: background 0.2s;
+  font-size: 80px;  /* велика кнопка Play */
+  color: #fff;      /* біла іконка */
 }
 
-.arrow:hover {
-  background: rgba(255, 255, 255, 0.9);
+#playOverlay:hover {
+  background: rgba(0,0,0,0.6); /* трохи темніше при наведенні */
 }
 
-.arrow-prev {
-  left: 10px;
-}
 
-.arrow-next {
-  right: 10px;
-}
   </style>
 </head>
 <body>
@@ -166,86 +155,86 @@
   </div>
 
   <div class="invitation" id="invitationBlock">
-    <div class="slider" id="slider">
-      <img class="slide active" src="images/photo1.jpg" />
-      <img class="slide" src="images/photo2.jpg" />
-      <img class="slide" src="images/photo3.jpg" />
 
-      <div class="arrow arrow-prev" onclick="prevSlide()">&#10094;</div>
-      <div class="arrow arrow-next" onclick="nextSlide()">&#10095;</div>
+    <div class="video-container">
+      <video id="mainVideo" playsinline>
+        <source src="videos/video1.mp4" type="video/mp4">
+        Ваш браузер не підтримує відео.
+      </video>
+
+      <div id="playOverlay">▶</div>
     </div>
 
     <div class="title">СПЕЦІАЛЬНЕ ЗАПРОШЕННЯ</div>
-    <div class="subtitle">С У К А</div>
-    <div class="name">Вельмишановний Лібунський Дмитро Анатолійович</div>
-  <div class="details">
-  <div>ПРИХОДЬТЕ В ПАБ
-  
-    <a href="https://maps.app.goo.gl/4PHV6eATNWHZ1wB36" target="_blank" rel="noopener noreferrer">👉 Kegler</a>
-  </div>
-  <div>17.07.2025</div>
-  <div>19:30</div>
-</div>
+    <div class="subtitle">Д О Р О Г Е Н Ь К І</div>
+    <div class="name">Приходьте на Свято мого 26 Дня Народження</div>
+    <div class="details">
+      <div>Місце Квартира Бабушки :)  
+        <a href="https://maps.app.goo.gl/PEcKWFBgBRLcxuFr6" target="_blank" rel="noopener noreferrer">👉 Адреса</a>
+      </div>
+      <div>15.08.2025</div>
+      <div>18:20</div>
+      <div>PS.Візьміть з собою вилку :)</div>
+    </div>
 
     <div class="ad-text">
       <a href="https://send.monobank.ua/jar/2vZ6PkNFVH" target="_blank">👉Тут могла бути ваша реклама👈</a>
     </div>
   </div>
 
+  <!-- Фанфари -->
   <audio id="fanfare">
     <source src="https://www.dropbox.com/scl/fi/rl80rli64lb0i0s3fzgz3/torjestvennyie-fanfaryi-24685.mp3?rlkey=xn0ixczuuanxmkbzv9ajc6eg0&st=j8e1019e&raw=1" type="audio/mpeg">
     Ваш браузер не підтримує аудіо.
   </audio>
 
   <script>
+    const video = document.getElementById('mainVideo');
+    const fanfare = document.getElementById('fanfare');
+    const playOverlay = document.getElementById('playOverlay');
+
+    // Стартовий екран
     function startExperience() {
-      const audio = document.getElementById('fanfare');
-      const invitation = document.getElementById('invitationBlock');
-      const startScreen = document.getElementById('startScreen');
-
-      audio.play().then(() => {
-        startScreen.style.display = 'none';
-        invitation.style.display = 'block';
+      fanfare.play().then(() => {
+        document.getElementById('startScreen').style.display = 'none';
+        document.getElementById('invitationBlock').style.display = 'block';
       }).catch(() => {
-        startScreen.style.display = 'none';
-        invitation.style.display = 'block';
-        console.warn("Автозапуск звуку заблоковано.");
+        document.getElementById('startScreen').style.display = 'none';
+        document.getElementById('invitationBlock').style.display = 'block';
       });
     }
 
-    const slides = document.querySelectorAll('.slide');
-    let current = 0;
-    let slideInterval;
+    // Клік по кнопці Play overlay
+    playOverlay.addEventListener('click', () => {
+      video.play();
+      playOverlay.style.display = 'none';
+    });
 
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-      });
-    }
+    // Клік по відео для паузи / відтворення
+    video.addEventListener('click', () => {
+      if (video.paused) {
+        video.play();
+        playOverlay.style.display = 'none';
+      } else {
+        video.pause();
+        playOverlay.style.display = 'flex';
+      }
+    });
 
-    function nextSlide() {
-      current = (current + 1) % slides.length;
-      showSlide(current);
-    }
+    // Зупинка фанфар при старті відео
+    video.addEventListener('play', () => {
+      if (!fanfare.paused) {
+        fanfare.pause();
+        fanfare.currentTime = 0;
+      }
+    });
 
-    function prevSlide() {
-      current = (current - 1 + slides.length) % slides.length;
-      showSlide(current);
-    }
-
-    function startAutoSlide() {
-      slideInterval = setInterval(nextSlide, 1500);
-    }
-
-    function stopAutoSlide() {
-      clearInterval(slideInterval);
-    }
-
-    startAutoSlide();
-
-    const slider = document.getElementById('slider');
-    slider.addEventListener('mouseenter', stopAutoSlide);
-    slider.addEventListener('mouseleave', startAutoSlide);
+    // Показати overlay якщо відео на паузі (не при завершенні)
+    video.addEventListener('pause', () => {
+      if (!video.ended) {
+        playOverlay.style.display = 'flex';
+      }
+    });
   </script>
 
 </body>
